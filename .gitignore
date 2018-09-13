@@ -1,3 +1,4 @@
+*.log
 *.java.hsp
 *.sonarj
 *.sw*

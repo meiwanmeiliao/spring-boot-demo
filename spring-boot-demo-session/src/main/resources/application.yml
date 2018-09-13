@@ -1,0 +1,19 @@
+server:
+  session:
+    timeout: 2000
+  port: 8000
+
+spring:
+  redis:
+    database: 3
+    port: 6379
+    host: 127.0.0.1
+    timeout: 5000
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+  session:
+    store-type: redis
+

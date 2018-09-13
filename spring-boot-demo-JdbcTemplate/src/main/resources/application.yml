@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    username: vortex
+    password: vortex2016
+    url: jdbc:mysql://192.168.1.197/007?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&serverTimezone=CTT

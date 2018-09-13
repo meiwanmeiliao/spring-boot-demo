@@ -1,0 +1,16 @@
+#mail
+spring:
+  mail:
+    host: smtp.163.com
+    username: 18325569073@163.com
+    password: zhuolin123
+    protocol: smtp
+    properties:
+      mail:
+        debug: true
+        smtp:
+          auth: true
+server:
+  port: 8009
+
+

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<configuration>
+
+    <!-- 文件输出格式 -->
+    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
+
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                ${PATTERN}<!-- 控制台打印日志文件体 时间-信息 -->
+            </pattern>
+        </layout>
+    </appender>
+
+    <!-- info日志 -->
+    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤日志 -->
+        <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+            <!--<level>ERROR</level>-->
+            <!--<onMatch>DENY</onMatch>  &lt;!&ndash; 如果命中就禁止这条日志 &ndash;&gt;-->
+            <!--<onMismatch>ACCEPT</onMismatch>  &lt;!&ndash; 如果没有命中就使用这条规则 &ndash;&gt;-->
+        <!--</filter>-->
+
+        <encoder>
+            <pattern>
+                ${PATTERN}<!-- 控制台打印日志文件体 时间-信息 -->
+            </pattern>
+        </encoder>
+        <!-- 滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 设置info日志路径 -->
+            <fileNamePattern>info.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!-- error日志 -->
+    <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+
+        <encoder>
+            <pattern>
+                ${PATTERN}<!-- 控制台打印日志文件体 时间-信息 -->
+            </pattern>
+        </encoder>
+        <!-- 滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 设置error日志路径 -->
+            <fileNamePattern>error.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 自定义日志 -->
+    <appender name="file—monitor" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤日志 -->
+        <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+            <!--<level>INFO</level>-->
+            <!--<onMatch>ACCEPT</onMatch>-->
+            <!--<onMismatch>DENY</onMismatch>-->
+        <!--</filter>-->
+
+        <encoder>
+            <pattern>
+                ${PATTERN}<!-- 控制台打印日志文件体 时间-信息 -->
+            </pattern>
+        </encoder>
+        <!-- 滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>monitor.%d.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="monitor" additivity="false">
+        <appender-ref ref="file—monitor"/>
+    </logger>
+
+    <!-- 设置默认日志级别为INFO -->
+    <root level="info">
+        <appender-ref ref="consoleLog"/>
+        <appender-ref ref="fileInfoLog"/>
+        <appender-ref ref="fileErrorLog"/>
+    </root>
+</configuration>
