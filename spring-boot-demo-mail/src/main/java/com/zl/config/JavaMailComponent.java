@@ -57,7 +57,7 @@ public class JavaMailComponent {
         from.setPersonal("😀", "UTF-8");
         helper.setFrom(from);
         helper.setText(mail);
-        helper.setTo(new String[]{"18325569073@163.com"});
+        helper.setTo(new String[]{"xxxx@163.com"});
 //        helper.
         helper.setSubject("邮件11");
         helper.setText(text, true);
